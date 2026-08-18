@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студия массажа — Профессиональный массаж и спа-процедуры</title>
+    <meta name="description" content="Профессиональный массаж для вашего здоровья и расслабления. Два уютных салона. Опытный мастер Эдем Мустафаев.">
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Подключение иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Студия массажа</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#services">Услуги и цены</a></li>
+                <li><a href="#studios">Наши студии</a></li>
+                <li><a href="#booking">Запись онлайн</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <a href="#booking" class="btn header-cta">Записаться онлайн</a>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Профессиональный массаж для вашего здоровья и расслабления</h1>
+            <p>Два уютных салона. Один мастер — Эдем Мустафаев. Многолетний опыт и десятки дипломов.</p>
+            <a href="#booking" class="btn">Записаться на сеанс</a>
+        </div>
+    </section>
+
+    <!-- О мастере -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">О мастере</h2>
+            <div class="about-wrapper">
+                <div class="about-img reveal">
+                    <img src="images/master.jpg" alt="Эдем Мустафаев">
+                </div>
+                <div class="about-text reveal">
+                    <p><strong>Эдем Мустафаев</strong> — сертифицированный массажист с многолетним опытом. Обладатель множества дипломов и сертификатов по различным техникам массажа: классический, лимфодренажный, огненный, миофасциальный, точечный, баночный и другие.</p>
+                    <p>Индивидуальный подход к каждому клиенту. Эдем создаст атмосферу полного доверия и комфорта, чтобы вы могли расслабиться и восстановить силы.</p>
+                    
+                    <!-- БЛОК С ВИДЕО (Локальный файл) -->
+                    <!-- Если хотите YouTube: замените тег <video> на <iframe src="https://www.youtube.com/embed/ВАШ_ID"> -->
+                    <div class="video-container reveal">
+                        <video controls poster="images/master.jpg">
+                            <source src="videos/massage.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает воспроизведение видео.
+                        </video>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="diplomas-grid reveal">
+                <div class="diploma-item" onclick="openModal('images/cert1.jpg', 'Сертификат 1')">
+                    <img src="images/cert1.jpg" alt="Диплом 1">
+                </div>
+                <div class="diploma-item" onclick="openModal('images/cert2.jpg', 'Сертификат 2')">
+                    <img src="images/cert2.jpg" alt="Диплом 2">
+                </div>
+                <div class="diploma-item" onclick="openModal('images/cert3.jpg', 'Сертификат 3')">
+                    <img src="images/cert3.jpg" alt="Диплом 3">
+                </div>
+                <div class="diploma-item" onclick="openModal('images/cert4.jpg', 'Сертификат 4')">
+                    <img src="images/cert4.jpg" alt="Диплом 4">
+                </div>
+                <div class="diploma-item" onclick="openModal('images/cert5.jpg', 'Сертификат 5')">
+                    <img src="images/cert5.jpg" alt="Диплом 5">
+                </div>
+                <div class="diploma-item" onclick="openModal('images/cert6.jpg', 'Сертификат 6')">
+                    <img src="images/cert6.jpg" alt="Диплом 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="section-padding" style="background-color: #EEE6DA;">
+        <div class="container">
+            <h2 class="section-title reveal">Услуги и цены</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <h3>Классический массаж</h3>
+                    <p class="duration">60 мин.</p>
+                    <p class="price">1800 ₽</p>
+                    <div class="service-tooltip">Универсальный массаж для снятия напряжения и улучшения кровообращения.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Массаж спины</h3>
+                    <p class="duration">30 мин.</p>
+                    <p class="price">900 ₽</p>
+                    <div class="service-tooltip">Целенаправленное расслабление мышц спины, снятие болевого синдрома.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Лимфодренажный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <div class="service-tooltip">Устранение отеков, выведение лишней жидкости, детоксикация организма.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Огненный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">2500 ₽</p>
+                    <div class="service-tooltip">Уникальная техника с использованием огня для глубокого прогрева мышц.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Общий массаж всего тела</h3>
+                    <p class="duration">90 мин.</p>
+                    <p class="price">2500 ₽</p>
+                    <div class="service-tooltip">Полное расслабление от кончиков пальцев до головы, гармония души и тела.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Миофасциальный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <div class="service-tooltip">Глубокая работа с фасциями для восстановления подвижности суставов.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Точечный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <div class="service-tooltip">Воздействие на акуптурные точки для восстановления энергетического баланса.</div>
+                </div>
+                <div class="service-card reveal">
+                    <h3>Баночный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <div class="service-tooltip">Вакуумный массаж для улучшения лимфотока и кровообращения.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Студии -->
+    <section id="studios" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">Наши студии</h2>
+            <div class="studios-grid">
+                <div class="studio-card reveal">
+                    <div class="studio-img-placeholder" style="background-image: url('images/studio1.jpg');" onclick="openModal('images/studio1.jpg', 'Студия №1')">
+                        <span>Загрузить фото</span>
+                    </div>
+                    <div class="studio-info">
+                        <h3>Студия №1</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Город, ул. Уютная, д. 1</p>
+                        <p><i class="fas fa-phone"></i> +7 (900) 000-00-01</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 09:00 - 21:00</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top:15px; width:100%;">Показать на карте</a>
+                    </div>
+                </div>
+                <div class="studio-card reveal">
+                    <div class="studio-img-placeholder" style="background-image: url('images/studio2.jpg');" onclick="openModal('images/studio2.jpg', 'Студия №2')">
+                        <span>Загрузить фото</span>
+                    </div>
+                    <div class="studio-info">
+                        <h3>Студия №2</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Город, пр. Расслабления, д. 2</p>
+                        <p><i class="fas fa-phone"></i> +7 (900) 000-00-02</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 10:00 - 22:00</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top:15px; width:100%;">Показать на карте</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Запись онлайн -->
+    <section id="booking" class="section-padding booking-section">
+        <div class="container">
+            <h2 class="section-title reveal">Онлайн-запись</h2>
+            <form class="booking-form reveal" onsubmit="submitBooking(event)">
+                <div class="form-group">
+                    <label for="name">Имя и фамилия</label>
+                    <input type="text" id="name" class="form-control" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                <div class="form-group">
+                    <label for="studio">Выбор студии</label>
+                    <select id="studio" class="form-control" required>
+                        <option value="">-- Выберите студию --</option>
+                        <option value="1">Студия 1</option>
+                        <option value="2">Студия 2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Выбор услуги</label>
+                    <select id="service" class="form-control" required>
+                        <option value="">-- Выберите услугу --</option>
+                        <option>Классический массаж (1800 ₽)</option>
+                        <option>Массаж спины (900 ₽)</option>
+                        <option>Лимфодренажный массаж (1800 ₽)</option>
+                        <option>Огненный массаж (2500 ₽)</option>
+                        <option>Общий массаж всего тела (2500 ₽)</option>
+                        <option>Миофасциальный массаж (1800 ₽)</option>
+                        <option>Точечный массаж (1800 ₽)</option>
+                        <option>Баночный массаж (1800 ₽)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="datetime">Дата и время</label>
+                    <input type="datetime-local" id="datetime" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Комментарий (необязательно)</label>
+                    <textarea id="comment" class="form-control" rows="3" placeholder="Ваши пожелания..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; background: var(--white); color: var(--brown); border: none;">Записаться</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">Контакты</h2>
+            <div class="contacts-wrapper reveal">
+                <div class="contact-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Студия №1</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Город, ул. Уютная, д. 1</p>
+                    <p><i class="fas fa-phone"></i> +7 (900) 000-00-01</p>
+                    <a href="tel:+79000000001" class="btn" style="margin-top: 15px;">Позвонить</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Студия №2</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Город, пр. Расслабления, д. 2</p>
+                    <p><i class="fas fa-phone"></i> +7 (900) 000-00-02</p>
+                    <a href="tel:+79000000002" class="btn" style="margin-top: 15px;">Позвонить</a>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Плавающая кнопка -->
+    <a href="#booking" class="floating-btn" title="Записаться онлайн">
+        <i class="fas fa-calendar-check"></i>
+    </a>
+
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Подключение JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
