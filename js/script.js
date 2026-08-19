@@ -1,40 +1,30 @@
-// 1. Запрещаем браузеру запоминать старую позицию скролла
+// 1. ОТКЛЮЧЕНИЕ ЗАПОМИНАНИЯ СКРОЛЛА (чтобы сайт всегда открывался сверху)
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-
-// 2. Сбрасываем фокус
 document.addEventListener('DOMContentLoaded', function() {
     if (document.activeElement) {
         document.activeElement.blur();
     }
 });
-
-// 3. Убираем якорь из адресной строки
 if (window.location.hash) {
     history.replaceState(null, null, window.location.href.split('#')[0]);
 }
-
-// 4. Принудительно возвращаем страницу на самый верх
 window.scrollTo(0, 0);
 
-// ---------------------------------------------------------
-
-// Мобильное меню
+// 2. МОБИЛЬНОЕ МЕНЮ
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.getElementById('navMenu');
 mobileToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
-
-// Закрытие меню при клике на ссылку
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
     });
 });
 
-// Анимации при скролле
+// 3. АНИМАЦИИ ПРИ СКРОЛЛЕ
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -43,16 +33,18 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.1 });
-
 reveals.forEach(reveal => {
     observer.observe(reveal);
 });
 
-// Модальные окна для дипломов
+// 4. ЛОГИКА МОДАЛЬНЫХ ОКОН И СЛАЙДЕРА
+const modal = document.getElementById('myModal');
+const modalBody = document.getElementById('modalBody');
+let galleryImages = [];
+let currentIndex = 0;
+
 function openModal(imgSrc, title) {
-    const modal = document.getElementById('myModal');
-    const modalBody = document.getElementById('modalBody');
-    
+    galleryImages = []; // Очищаем массив дипломов
     modalBody.innerHTML = `
         <img src="${imgSrc}" alt="${title}">
         <h3>${title}</h3>
@@ -60,29 +52,23 @@ function openModal(imgSrc, title) {
     modal.style.display = 'flex';
 }
 
-// Модальное окно со СЛАЙДЕРОМ для студий
-let galleryImages = [];
-let currentIndex = 0;
-
-function openGallery(images, title) {
-    const modal = document.getElementById('myModal');
-    const modalBody = document.getElementById('modalBody');
-    galleryImages = images;
+function openGallery(imagesArray, title) {
+    galleryImages = imagesArray;
     currentIndex = 0;
-
     modalBody.innerHTML = `
         <h3 style="margin-bottom: 15px;">${title}</h3>
         <div class="gallery-container">
             <button class="gallery-btn gallery-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
-            <img src="${galleryImages[currentIndex]}" alt="${title}" id="galleryMainImg">
+            <img src="${galleryImages[currentIndex]}" alt="${title}" id="galleryMainImg" style="max-width:100%; max-height:70vh; border-radius:8px;">
             <button class="gallery-btn gallery-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="gallery-counter">Фото ${currentIndex + 1} из ${galleryImages.length}</div>
+        <div class="gallery-counter" style="margin-top:10px; font-size:0.9rem; color:#888;">Фото ${currentIndex + 1} из ${galleryImages.length}</div>
     `;
     modal.style.display = 'flex';
 }
 
 function changeImage(direction) {
+    if (galleryImages.length === 0) return;
     currentIndex += direction;
     if (currentIndex >= galleryImages.length) {
         currentIndex = 0;
@@ -90,28 +76,36 @@ function changeImage(direction) {
     if (currentIndex < 0) {
         currentIndex = galleryImages.length - 1;
     }
-    
     const img = document.getElementById('galleryMainImg');
     const counter = document.querySelector('.gallery-counter');
     if (img) img.src = galleryImages[currentIndex];
     if (counter) counter.textContent = `Фото ${currentIndex + 1} из ${galleryImages.length}`;
 }
 
-// Поддержка свайпов и клика мышкой для слайдера
-let touchStartX = 0;
-const modal = document.getElementById('myModal');
+// Назначаем клик на карточки студий
+document.querySelectorAll('.studio-img-placeholder').forEach(card => {
+    card.addEventListener('click', function() {
+        const imagesStr = this.getAttribute('data-images');
+        const title = this.getAttribute('data-title');
+        if (imagesStr && title) {
+            const imagesArr = imagesStr.split(',');
+            openGallery(imagesArr, title);
+        }
+    });
+});
 
+// Поддержка свайпов для слайдера
+let touchStartX = 0;
 modal.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
 }, false);
-
 modal.addEventListener('touchend', (e) => {
     const touchEndX = e.changedTouches[0].screenX;
-    if (galleryImages.length > 0) { // Если открыта галерея
+    if (galleryImages.length > 0) {
         if (touchStartX - touchEndX > 50) {
-            changeImage(1); // Свайп влево -> следующее
+            changeImage(1);
         } else if (touchEndX - touchStartX > 50) {
-            changeImage(-1); // Свайп вправо -> предыдущее
+            changeImage(-1);
         }
     }
 }, false);
@@ -125,26 +119,26 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Закрытие модалки
 function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
-    galleryImages = []; // Очищаем массив картинок при закрытии
+    modal.style.display = 'none';
+    galleryImages = [];
 }
-
-// Закрытие по клику вне окна
+modal.querySelector('.modal-close').addEventListener('click', closeModal);
 window.onclick = function(event) {
-    if (event.target == document.getElementById('myModal')) {
+    if (event.target == modal) {
         closeModal();
     }
 }
 
-// Обработка формы
+// 5. ОБРАБОТКА ФОРМЫ ЗАПИСИ
 function submitBooking(event) {
     event.preventDefault();
-    openModal('', 'Спасибо!'); // Открываем кастомное окно
-    document.getElementById('modalBody').innerHTML = `
+    openModal('', 'Спасибо!');
+    modalBody.innerHTML = `
         <i class="fas fa-check-circle" style="font-size: 3rem; color: #C1A35F; margin-bottom: 20px;"></i>
         <h3>Заявка отправлена!</h3>
         <p>Спасибо! Мы свяжемся с вами для подтверждения записи.</p>
     `;
-    document.getElementById('booking').reset(); // Очистка формы
+    document.querySelector('.booking-form').reset();
 }
