@@ -1,4 +1,4 @@
-// 1. ОТКЛЮЧЕНИЕ ЗАПОМИНАНИЯ СКРОЛЛА (чтобы сайт всегда открывался сверху)
+// 1. ОТКЛЮЧЕНИЕ ЗАПОМИНАНИЯ СКРОЛЛА
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -43,8 +43,9 @@ const modalBody = document.getElementById('modalBody');
 let galleryImages = [];
 let currentIndex = 0;
 
+// Универсальная функция для картинок
 function openModal(imgSrc, title) {
-    galleryImages = []; // Очищаем массив дипломов
+    galleryImages = [];
     modalBody.innerHTML = `
         <img src="${imgSrc}" alt="${title}">
         <h3>${title}</h3>
@@ -52,6 +53,20 @@ function openModal(imgSrc, title) {
     modal.style.display = 'flex';
 }
 
+// НОВАЯ ФУНКЦИЯ: Описание услуг (всплывает при нажатии на телефоне и ПК)
+function openServiceModal(title, duration, price, description) {
+    galleryImages = [];
+    modalBody.innerHTML = `
+        <h3>${title}</h3>
+        <p style="color: var(--soft-gold); font-size: 2rem; font-family: 'Playfair Display', serif; margin: 10px 0;">${price}</p>
+        <p style="color: #888; margin-bottom: 20px; font-size: 0.9rem;">Длительность: ${duration}</p>
+        <p style="text-align: center; max-width: 400px; margin: 0 auto 20px;">${description}</p>
+        <a href="index.html#booking" class="btn" style="margin-top: 10px;">Записаться на сеанс</a>
+    `;
+    modal.style.display = 'flex';
+}
+
+// Функция для слайдера студий
 function openGallery(imagesArray, title) {
     galleryImages = imagesArray;
     currentIndex = 0;
@@ -70,19 +85,14 @@ function openGallery(imagesArray, title) {
 function changeImage(direction) {
     if (galleryImages.length === 0) return;
     currentIndex += direction;
-    if (currentIndex >= galleryImages.length) {
-        currentIndex = 0;
-    }
-    if (currentIndex < 0) {
-        currentIndex = galleryImages.length - 1;
-    }
+    if (currentIndex >= galleryImages.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = galleryImages.length - 1;
     const img = document.getElementById('galleryMainImg');
     const counter = document.querySelector('.gallery-counter');
     if (img) img.src = galleryImages[currentIndex];
     if (counter) counter.textContent = `Фото ${currentIndex + 1} из ${galleryImages.length}`;
 }
 
-// Назначаем клик на карточки студий
 document.querySelectorAll('.studio-img-placeholder').forEach(card => {
     card.addEventListener('click', function() {
         const imagesStr = this.getAttribute('data-images');
@@ -94,7 +104,6 @@ document.querySelectorAll('.studio-img-placeholder').forEach(card => {
     });
 });
 
-// Поддержка свайпов для слайдера
 let touchStartX = 0;
 modal.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
@@ -102,15 +111,11 @@ modal.addEventListener('touchstart', (e) => {
 modal.addEventListener('touchend', (e) => {
     const touchEndX = e.changedTouches[0].screenX;
     if (galleryImages.length > 0) {
-        if (touchStartX - touchEndX > 50) {
-            changeImage(1);
-        } else if (touchEndX - touchStartX > 50) {
-            changeImage(-1);
-        }
+        if (touchStartX - touchEndX > 50) changeImage(1);
+        else if (touchEndX - touchStartX > 50) changeImage(-1);
     }
 }, false);
 
-// Стрелки на клавиатуре
 document.addEventListener('keydown', (e) => {
     if (modal.style.display === 'flex' && galleryImages.length > 0) {
         if (e.key === 'ArrowRight') changeImage(1);
@@ -119,7 +124,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Закрытие модалки
 function closeModal() {
     modal.style.display = 'none';
     galleryImages = [];
