@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги и цены — Студия массажа</title>
+    <meta name="description" content="Прайс-лист на услуги массажа. Классический, лимфодренажный, огненный, миофасциальный и другие техники.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="setTimeout(function(){window.scrollTo(0,0)}, 0)">
+
+    <!-- ШАПКА -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Студия массажа</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#hero">Главная</a></li>
+                <li><a href="index.html#about">О нас</a></li>
+                <li><a href="services.html">Услуги и цены</a></li>
+                <li><a href="studios.html">Наши студии</a></li>
+                <li><a href="diplomas.html">Дипломы</a></li>
+                <li><a href="index.html#booking">Запись онлайн</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+            <a href="index.html#booking" class="btn header-cta">Записаться онлайн</a>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- УСЛУГИ И ЦЕНЫ -->
+    <section id="services-page" class="section-padding" style="padding-top: 140px; background-color: #EEE6DA;">
+        <div class="container">
+            <h2 class="section-title reveal">Услуги и цены</h2>
+            <p class="reveal" style="text-align: center; max-width: 800px; margin: -30px auto 50px; font-size: 1.1rem;">
+                Нажмите на интересующую услугу, чтобы узнать подробнее, что она включает в себя.
+            </p>
+            
+            <div class="services-grid">
+                <!-- Каждая карточка вызывает модальное окно с описанием -->
+                <div class="service-card reveal" onclick="openServiceModal('Классический массаж', '60 мин.', '1800 ₽', 'Универсальный массаж для снятия напряжения и улучшения кровообращения. Подходит для общего расслабления и поддержания мышечного тонуса.')">
+                    <h3>Классический массаж</h3>
+                    <p class="duration">60 мин.</p>
+                    <p class="price">1800 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Массаж спины', '30 мин.', '900 ₽', 'Целенаправленное расслабление мышц спины. Эффективно снимает болевой синдром, улучшает осанку и возвращает легкость движений.')">
+                    <h3>Массаж спины</h3>
+                    <p class="duration">30 мин.</p>
+                    <p class="price">900 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Лимфодренажный массаж', '—', '1800 ₽', 'Устранение отеков, выведение лишней жидкости и токсинов из организма. Отличная детоксикация и улучшение контуров тела.')">
+                    <h3>Лимфодренажный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Огненный массаж', '—', '2500 ₽', 'Уникальная техника с использованием огня для глубокого прогрева мышц. Расслабляет даже самые застарелые спазмы и улучшает кровоток.')">
+                    <h3>Огненный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">2500 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Общий массаж всего тела', '90 мин.', '2500 ₽', 'Полное расслабление от кончиков пальцев до головы. Гармония души и тела, снятие усталости и полный сброс напряжения.')">
+                    <h3>Общий массаж всего тела</h3>
+                    <p class="duration">90 мин.</p>
+                    <p class="price">2500 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Миофасциальный массаж', '—', '1800 ₽', 'Глубокая работа с фасциями (соединительной тканью) для восстановления подвижности суставов и устранения хронических болей.')">
+                    <h3>Миофасциальный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Точечный массаж', '—', '1800 ₽', 'Воздействие на акуптурные точки для восстановления энергетического баланса и работы внутренних органов.')">
+                    <h3>Точечный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+                
+                <div class="service-card reveal" onclick="openServiceModal('Баночный массаж', '—', '1800 ₽', 'Вакуумный массаж для улучшения лимфотока и кровообращения. Эффективен при целлюлите и простудах.')">
+                    <h3>Баночный массаж</h3>
+                    <p class="duration">—</p>
+                    <p class="price">1800 ₽</p>
+                    <p class="service-tap-hint">Подробнее <i class="fas fa-chevron-down"></i></p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;" class="reveal">
+                <a href="index.html#booking" class="btn">Записаться на сеанс</a>
+            </div>
+        </div>
+    </section>
+
+    <a href="index.html#booking" class="floating-btn" title="Записаться онлайн"><i class="fas fa-calendar-check"></i></a>
+
+    <!-- Модальное окно для описания услуг -->
+    <div id="myModal" class="modal">
+        <div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><div id="modalBody"></div></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
