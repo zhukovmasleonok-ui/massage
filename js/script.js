@@ -1,3 +1,25 @@
+// 1. Запрещаем браузеру запоминать старую позицию скролла
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// 2. Убираем фокус с формы (чтобы браузер не прыгал к ней)
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
+});
+
+// 3. Убираем якорь (#booking) из адресной строки, если он там остался
+if (window.location.hash) {
+    history.replaceState(null, null, window.location.href.split('#')[0]);
+}
+
+// 4. Принудительно возвращаем страницу на самый верх
+window.scrollTo(0, 0);
+
+// ---------------------------------------------------------
+
 // Мобильное меню
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.getElementById('navMenu');
