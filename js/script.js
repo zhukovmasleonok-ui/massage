@@ -1,15 +1,9 @@
-// 1. ОТКЛЮЧЕНИЕ ЗАПОМИНАНИЯ СКРОЛЛА
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
+// 1. Очистка фокуса и сброс скролла
 document.addEventListener('DOMContentLoaded', function() {
     if (document.activeElement) {
         document.activeElement.blur();
     }
 });
-if (window.location.hash) {
-    history.replaceState(null, null, window.location.href.split('#')[0]);
-}
 window.scrollTo(0, 0);
 
 // 2. МОБИЛЬНОЕ МЕНЮ
@@ -43,7 +37,6 @@ const modalBody = document.getElementById('modalBody');
 let galleryImages = [];
 let currentIndex = 0;
 
-// Универсальная функция для картинок
 function openModal(imgSrc, title) {
     galleryImages = [];
     modalBody.innerHTML = `
@@ -53,7 +46,6 @@ function openModal(imgSrc, title) {
     modal.style.display = 'flex';
 }
 
-// НОВАЯ ФУНКЦИЯ: Описание услуг (всплывает при нажатии на телефоне и ПК)
 function openServiceModal(title, duration, price, description) {
     galleryImages = [];
     modalBody.innerHTML = `
@@ -66,7 +58,6 @@ function openServiceModal(title, duration, price, description) {
     modal.style.display = 'flex';
 }
 
-// Функция для слайдера студий
 function openGallery(imagesArray, title) {
     galleryImages = imagesArray;
     currentIndex = 0;
