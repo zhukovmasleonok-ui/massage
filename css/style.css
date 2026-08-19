@@ -319,15 +319,7 @@ header {
 .studio-img-placeholder:hover {
     transform: scale(1.02);
 }
-.studio-img-placeholder::after {
-    content: '\f030';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 2rem;
-    margin-right: 10px;
-    color: white;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
+/* Значок фотоаппарата удалён отсюда */
 .studio-img-placeholder span {
     font-size: 1rem;
     font-weight: 500;
