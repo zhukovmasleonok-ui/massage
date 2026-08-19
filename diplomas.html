@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дипломы и сертификаты — Студия массажа</title>
+    <meta name="description" content="Дипломы и сертификаты мастера Эдема Мустафаева.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,8 +20,9 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html#hero">Главная</a></li>
                 <li><a href="index.html#about">О нас</a></li>
-                <li><a href="index.html#services">Услуги и цены</a></li>
-                <li><a href="index.html#studios">Наши студии</a></li>
+                <!-- ИСПРАВЛЕНО: теперь ведёт на services.html -->
+                <li><a href="services.html">Услуги и цены</a></li>
+                <li><a href="studios.html">Наши студии</a></li>
                 <li><a href="diplomas.html">Дипломы</a></li>
                 <li><a href="index.html#booking">Запись онлайн</a></li>
                 <li><a href="index.html#contacts">Контакты</a></li>
@@ -37,7 +40,6 @@
             </p>
             
             <div class="diplomas-grid reveal">
-                <!-- ДИПЛОМЫ: Положите в папку images файлы cert1.jpg ... cert6.jpg -->
                 <div class="diploma-item" onclick="openModal('images/cert1.jpg', 'Сертификат 1')"><img src="images/cert1.jpg" alt="Диплом 1"></div>
                 <div class="diploma-item" onclick="openModal('images/cert2.jpg', 'Сертификат 2')"><img src="images/cert2.jpg" alt="Диплом 2"></div>
                 <div class="diploma-item" onclick="openModal('images/cert3.jpg', 'Сертификат 3')"><img src="images/cert3.jpg" alt="Диплом 3"></div>
