@@ -3,14 +3,14 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
-// 2. Убираем фокус с формы (чтобы браузер не прыгал к ней)
+// 2. Сбрасываем фокус
 document.addEventListener('DOMContentLoaded', function() {
     if (document.activeElement) {
         document.activeElement.blur();
     }
 });
 
-// 3. Убираем якорь (#booking) из адресной строки, если он там остался
+// 3. Убираем якорь из адресной строки
 if (window.location.hash) {
     history.replaceState(null, null, window.location.href.split('#')[0]);
 }
@@ -48,35 +48,92 @@ reveals.forEach(reveal => {
     observer.observe(reveal);
 });
 
-// Модальные окна
+// Модальные окна для дипломов
 function openModal(imgSrc, title) {
     const modal = document.getElementById('myModal');
     const modalBody = document.getElementById('modalBody');
     
-    if (imgSrc) {
-        modalBody.innerHTML = `
-            <img src="${imgSrc}" alt="${title}">
-            <h3>${title}</h3>
-        `;
-    } else {
-        modalBody.innerHTML = `
-            <h3>${title}</h3>
-            <p>Подробная информация о студии.</p>
-            <p>Здесь будет располагаться увеличенное фото и полное описание интерьера.</p>
-        `;
-    }
+    modalBody.innerHTML = `
+        <img src="${imgSrc}" alt="${title}">
+        <h3>${title}</h3>
+    `;
     modal.style.display = 'flex';
 }
 
+// Модальное окно со СЛАЙДЕРОМ для студий
+let galleryImages = [];
+let currentIndex = 0;
+
+function openGallery(images, title) {
+    const modal = document.getElementById('myModal');
+    const modalBody = document.getElementById('modalBody');
+    galleryImages = images;
+    currentIndex = 0;
+
+    modalBody.innerHTML = `
+        <h3 style="margin-bottom: 15px;">${title}</h3>
+        <div class="gallery-container">
+            <button class="gallery-btn gallery-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
+            <img src="${galleryImages[currentIndex]}" alt="${title}" id="galleryMainImg">
+            <button class="gallery-btn gallery-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="gallery-counter">Фото ${currentIndex + 1} из ${galleryImages.length}</div>
+    `;
+    modal.style.display = 'flex';
+}
+
+function changeImage(direction) {
+    currentIndex += direction;
+    if (currentIndex >= galleryImages.length) {
+        currentIndex = 0;
+    }
+    if (currentIndex < 0) {
+        currentIndex = galleryImages.length - 1;
+    }
+    
+    const img = document.getElementById('galleryMainImg');
+    const counter = document.querySelector('.gallery-counter');
+    if (img) img.src = galleryImages[currentIndex];
+    if (counter) counter.textContent = `Фото ${currentIndex + 1} из ${galleryImages.length}`;
+}
+
+// Поддержка свайпов и клика мышкой для слайдера
+let touchStartX = 0;
+const modal = document.getElementById('myModal');
+
+modal.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+modal.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    if (galleryImages.length > 0) { // Если открыта галерея
+        if (touchStartX - touchEndX > 50) {
+            changeImage(1); // Свайп влево -> следующее
+        } else if (touchEndX - touchStartX > 50) {
+            changeImage(-1); // Свайп вправо -> предыдущее
+        }
+    }
+}, false);
+
+// Стрелки на клавиатуре
+document.addEventListener('keydown', (e) => {
+    if (modal.style.display === 'flex' && galleryImages.length > 0) {
+        if (e.key === 'ArrowRight') changeImage(1);
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'Escape') closeModal();
+    }
+});
+
 function closeModal() {
     document.getElementById('myModal').style.display = 'none';
+    galleryImages = []; // Очищаем массив картинок при закрытии
 }
 
 // Закрытие по клику вне окна
 window.onclick = function(event) {
-    const modal = document.getElementById('myModal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
+    if (event.target == document.getElementById('myModal')) {
+        closeModal();
     }
 }
 
