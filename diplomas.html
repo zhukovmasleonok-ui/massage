@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дипломы и сертификаты — Студия массажа</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="setTimeout(function(){window.scrollTo(0,0)}, 0)">
+
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Студия массажа</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#hero">Главная</a></li>
+                <li><a href="index.html#about">О нас</a></li>
+                <li><a href="index.html#services">Услуги и цены</a></li>
+                <li><a href="index.html#studios">Наши студии</a></li>
+                <li><a href="diplomas.html">Дипломы</a></li>
+                <li><a href="index.html#booking">Запись онлайн</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+            <a href="index.html#booking" class="btn header-cta">Записаться онлайн</a>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <section id="diplomas-page" class="section-padding" style="padding-top: 140px;">
+        <div class="container">
+            <h2 class="section-title reveal">Дипломы и сертификаты</h2>
+            <p class="reveal" style="text-align: center; max-width: 800px; margin: -30px auto 50px; font-size: 1.1rem;">
+                Подтверждение квалификации мастера Эдема Мустафаева. Нажмите на сертификат, чтобы увеличить.
+            </p>
+            
+            <div class="diplomas-grid reveal">
+                <!-- ДИПЛОМЫ: Положите в папку images файлы cert1.jpg ... cert6.jpg -->
+                <div class="diploma-item" onclick="openModal('images/cert1.jpg', 'Сертификат 1')"><img src="images/cert1.jpg" alt="Диплом 1"></div>
+                <div class="diploma-item" onclick="openModal('images/cert2.jpg', 'Сертификат 2')"><img src="images/cert2.jpg" alt="Диплом 2"></div>
+                <div class="diploma-item" onclick="openModal('images/cert3.jpg', 'Сертификат 3')"><img src="images/cert3.jpg" alt="Диплом 3"></div>
+                <div class="diploma-item" onclick="openModal('images/cert4.jpg', 'Сертификат 4')"><img src="images/cert4.jpg" alt="Диплом 4"></div>
+                <div class="diploma-item" onclick="openModal('images/cert5.jpg', 'Сертификат 5')"><img src="images/cert5.jpg" alt="Диплом 5"></div>
+                <div class="diploma-item" onclick="openModal('images/cert6.jpg', 'Сертификат 6')"><img src="images/cert6.jpg" alt="Диплом 6"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;" class="reveal">
+                <a href="index.html#booking" class="btn">Записаться на сеанс</a>
+            </div>
+        </div>
+    </section>
+
+    <a href="index.html#booking" class="floating-btn" title="Записаться онлайн"><i class="fas fa-calendar-check"></i></a>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><div id="modalBody"></div></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

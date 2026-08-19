@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши студии — Студия массажа</title>
+    <meta name="description" content="Два уютных салона массажа. Адреса, телефоны, часы работы и фото интерьеров.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="setTimeout(function(){window.scrollTo(0,0)}, 0)">
+
+    <!-- ШАПКА (ссылки ведут обратно на главную) -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Студия массажа</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#hero">Главная</a></li>
+                <li><a href="index.html#about">О нас</a></li>
+                <li><a href="index.html#services">Услуги и цены</a></li>
+                <li><a href="studios.html">Наши студии</a></li>
+                <li><a href="diplomas.html">Дипломы</a></li>
+                <li><a href="index.html#booking">Запись онлайн</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+            <a href="index.html#booking" class="btn header-cta">Записаться онлайн</a>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- КОНТЕНТ СТУДИЙ -->
+    <section id="studios-page" class="section-padding" style="padding-top: 140px;">
+        <div class="container">
+            <h2 class="section-title reveal">Наши студии</h2>
+            <p class="reveal" style="text-align: center; max-width: 800px; margin: -30px auto 50px; font-size: 1.1rem;">
+                Два уютных салона для вашего комфорта. Нажмите на фото, чтобы посмотреть галерею интерьеров.
+            </p>
+            
+            <div class="studios-grid">
+                <!-- СТУДИЯ 1 -->
+                <div class="studio-card reveal">
+                    <div class="studio-img-placeholder" style="background-image: url('images/studio1-1.jpg');" 
+                         data-images="images/studio1-1.jpg,images/studio1-2.jpg,images/studio1-3.jpg" 
+                         data-title="Студия №1">
+                        <span>Смотреть 3 фото</span>
+                    </div>
+                    <div class="studio-info">
+                        <h3>Студия №1</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Город, ул. Уютная, д. 1</p>
+                        <p><i class="fas fa-phone"></i> +7 (900) 000-00-01</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 09:00 - 21:00</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top:15px; width:100%;">Показать на карте</a>
+                    </div>
+                </div>
+                <!-- СТУДИЯ 2 -->
+                <div class="studio-card reveal">
+                    <div class="studio-img-placeholder" style="background-image: url('images/studio2-1.jpg');" 
+                         data-images="images/studio2-1.jpg,images/studio2-2.jpg,images/studio2-3.jpg" 
+                         data-title="Студия №2">
+                        <span>Смотреть 3 фото</span>
+                    </div>
+                    <div class="studio-info">
+                        <h3>Студия №2</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Город, пр. Расслабления, д. 2</p>
+                        <p><i class="fas fa-phone"></i> +7 (900) 000-00-02</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 10:00 - 22:00</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top:15px; width:100%;">Показать на карте</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;" class="reveal">
+                <a href="index.html#booking" class="btn">Записаться на сеанс</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПЛАВАЮЩАЯ КНОПКА -->
+    <a href="index.html#booking" class="floating-btn" title="Записаться онлайн"><i class="fas fa-calendar-check"></i></a>
+
+    <!-- МОДАЛЬНОЕ ОКНО (ДЛЯ СЛАЙДЕРА) -->
+    <div id="myModal" class="modal">
+        <div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><div id="modalBody"></div></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
